@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "191331520944",
+    "project_id": "loginfunction-ea9ab",
+    "storage_bucket": "loginfunction-ea9ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191331520944:android:137403eac80542d6dac675",
+        "android_client_info": {
+          "package_name": "com.example.loggin_fuction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191331520944-42mf1mhqlns8ceus9ks6urgup52tpn5b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJhXPU6YoMV6xqe7zWz54VHJPpd1uV6fs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "191331520944-42mf1mhqlns8ceus9ks6urgup52tpn5b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
