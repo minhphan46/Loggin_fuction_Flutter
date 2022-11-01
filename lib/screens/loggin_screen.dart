@@ -9,6 +9,7 @@ class LogginScreen extends StatefulWidget {
 }
 
 class _LogginScreenState extends State<LogginScreen> {
+  bool showText = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,15 +60,30 @@ class _LogginScreenState extends State<LogginScreen> {
                   border: Border.all(color: Colors.white),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Password",
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(width: 12),
+                    Flexible(
+                      child: TextField(
+                        obscureText: showText,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Password",
+                        ),
+                      ),
                     ),
-                  ),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          showText ? showText = false : showText = true;
+                        });
+                      },
+                      icon: Icon(showText
+                          ? Icons.remove_red_eye_outlined
+                          : Icons.remove_red_eye),
+                    ),
+                  ],
                 ),
               ),
             ),
