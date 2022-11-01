@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import '/screens/loggin_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,17 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Loggin fuction',
       home: LogginScreen(),
     );
-  }
-}
-
-class LogginScreen extends StatelessWidget {
-  const LogginScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
