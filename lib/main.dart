@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:loggin_fuction/screens/main_page.dart';
 import '/screens/loggin_screen.dart';
 
 Future main() async {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Loggin fuction',
-      home: LogginScreen(),
+      home: MainPage(),
     );
   }
 }
