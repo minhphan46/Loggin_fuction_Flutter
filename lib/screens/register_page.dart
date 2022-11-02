@@ -1,45 +1,41 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
-class LogginScreen extends StatefulWidget {
-  final VoidCallback showRegisterPage;
-  const LogginScreen({super.key, required this.showRegisterPage});
+class RegisterPage extends StatefulWidget {
+  final VoidCallback showLoginPage;
+  const RegisterPage({super.key, required this.showLoginPage});
 
   @override
-  State<LogginScreen> createState() => _LogginScreenState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LogginScreenState extends State<LogginScreen> {
-  bool _showText = true;
-  // text controllers
+class _RegisterPageState extends State<RegisterPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text.trim(),
-      password: _passwordController.text.trim(),
-    );
-    /* try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: "barry.allen@example.com",
-              password: "SuperSecretPassword!");
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-      }
-    } */
-  }
+  final _confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  bool passwordConfirmer() {
+    if (_passwordController.text.trim() ==
+        _confirmPasswordController.text.trim()) {
+      return true;
+    }
+    return false;
+  }
+
+  Future signUp() async {
+    if (passwordConfirmer()) {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+    }
   }
 
   @override
@@ -53,9 +49,9 @@ class _LogginScreenState extends State<LogginScreen> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.3),
               // Image
 
-              // Sign in
+              // Sign up
               const Text(
-                "Sign in",
+                "Register in",
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
@@ -100,42 +96,60 @@ class _LogginScreenState extends State<LogginScreen> {
                       Flexible(
                         child: TextField(
                           controller: _passwordController,
-                          obscureText: _showText,
+                          obscureText: false,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: "Password",
                           ),
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _showText ? _showText = false : _showText = true;
-                          });
-                        },
-                        icon: Icon(_showText
-                            ? Icons.remove_red_eye_outlined
-                            : Icons.remove_red_eye),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              // confirm password textfield
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(width: 12),
+                      Flexible(
+                        child: TextField(
+                          controller: _confirmPasswordController,
+                          obscureText: false,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Confirm password",
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // sign in button
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: GestureDetector(
-                  onTap: signIn,
+                  onTap: signUp,
                   child: Container(
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: Colors.deepPurple,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
-                        "Sign In",
+                        "Sign Up",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -151,16 +165,16 @@ class _LogginScreenState extends State<LogginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Not a menber?",
+                  const Text(
+                    "I am a member!",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   TextButton(
-                    onPressed: widget.showRegisterPage,
-                    child: Text(
-                      " Register now",
+                    onPressed: widget.showLoginPage,
+                    child: const Text(
+                      " Login now",
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
