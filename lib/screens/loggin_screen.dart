@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:loggin_fuction/screens/fogot_password_page.dart';
 import 'package:lottie/lottie.dart';
 
 class LogginScreen extends StatefulWidget {
@@ -117,7 +118,31 @@ class _LogginScreenState extends State<LogginScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ForgotPasswordPage(),
+                        ));
+                      },
+                      child: const Text(
+                        "Forgot Password?",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
               // sign in button
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -129,7 +154,7 @@ class _LogginScreenState extends State<LogginScreen> {
                       color: Colors.deepPurple,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Sign In",
                         style: TextStyle(
@@ -143,11 +168,11 @@ class _LogginScreenState extends State<LogginScreen> {
                 ),
               ),
               // not a menber ? register now
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Not a menber?",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -155,7 +180,7 @@ class _LogginScreenState extends State<LogginScreen> {
                   ),
                   TextButton(
                     onPressed: widget.showRegisterPage,
-                    child: Text(
+                    child: const Text(
                       " Register now",
                       style: TextStyle(
                         color: Colors.blue,
