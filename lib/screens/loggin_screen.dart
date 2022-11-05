@@ -47,9 +47,15 @@ class _LogginScreenState extends State<LogginScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.3),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.1),
               // Image
-
+              Container(
+                height: 200,
+                //width: 50,
+                child: Lottie.network(
+                    "https://assets9.lottiefiles.com/private_files/lf30_fkfbivy0.json"),
+              ),
+              SizedBox(height: 20),
               // Sign in
               const Text(
                 "Sign in",
